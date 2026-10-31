@@ -1,0 +1,713 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* The page is light only. Keeping this variant stops dark: classes in the
+   shadcn components from following the visitor's OS setting. */
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "PS Display Fallback";
+  font-style: normal;
+  src: local("Noto Serif"), local("NotoSerif");
+  size-adjust: 95.1%;
+  ascent-override: 112.4%;
+  descent-override: 30.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "PS Display Fallback";
+  font-style: italic;
+  src: local("Noto Serif Italic"), local("NotoSerif-Italic");
+  size-adjust: 92.7%;
+  ascent-override: 115.3%;
+  descent-override: 31.6%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "PS Text Fallback";
+  src: local("Noto Serif"), local("NotoSerif");
+  size-adjust: 87.9%;
+  ascent-override: 83.6%;
+  descent-override: 30.1%;
+  line-gap-override: 0%;
+}
+
+@theme static {
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-ui);
+
+  --color-paper: var(--paper);
+  --color-bone: var(--bone);
+  --color-champagne: var(--champagne);
+  --color-ink: var(--ink);
+  --color-midnight: var(--midnight);
+  --color-royal-deep: var(--royal-deep);
+  --color-room: var(--room);
+  --color-t-ink: var(--t-ink);
+  --color-t-soft: var(--t-soft);
+  --color-t-royal: var(--t-royal);
+  --color-t-goldink: var(--t-goldink);
+  --color-t-unlit: var(--t-unlit);
+  --color-t-cream: var(--t-cream);
+  --color-t-mist: var(--t-mist);
+  --color-t-goldleaf: var(--t-goldleaf);
+  --color-red: var(--red);
+  --color-red-hover: var(--red-hover);
+  --color-red-ondark: var(--red-ondark);
+  --color-gold-line: var(--gold-line);
+  --color-gold-shape: var(--gold-shape);
+
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-label: var(--label);
+  --color-rule: var(--rule);
+  --color-focus: var(--focus);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+@utility font-text {
+  font-family: var(--font-text);
+  font-weight: 400;
+}
+@utility font-ui {
+  font-family: var(--font-ui);
+}
+
+:root {
+  color-scheme: only light;
+
+  --paper: #fbf8f1;
+  --bone: #efe9db;
+  --champagne: #efe3c4;
+  --ink: #0e0f12;
+  --midnight: #0f1733;
+  --royal-deep: #192f6d;
+  --room: #13214d;
+
+  --t-ink: #15151a;
+  --t-soft: #4a4740;
+  --t-royal: #294894;
+  --t-goldink: #7a5a12;
+  --t-unlit: #6b675d;
+  --t-cream: #f6f1e6;
+  --t-mist: #cfcbc0;
+  --t-goldleaf: #e2c272;
+
+  --red: #a8281f;
+  --red-hover: #8c1f18;
+  --red-ondark: #c2342b;
+
+  --gold-line: #c9a23f;
+  --gold-shape: #b18724;
+
+  --ray-gold: #f0d78c;
+  --ray-blue: #7e9be6;
+
+  --gx: clamp(16px, 4.6vw, 88px);
+  --gap: clamp(16px, 2vw, 32px);
+  --section: clamp(72px, 11vw, 176px);
+  --edge: max(var(--gx), calc((100vw - 1480px) / 2 + var(--gx)));
+
+  --radius: 0px;
+}
+
+:root,
+[data-stock="paper"] {
+  --bg: var(--paper);
+}
+[data-stock="bone"] {
+  --bg: var(--bone);
+}
+[data-stock="champagne"] {
+  --bg: var(--champagne);
+}
+[data-stock="ink"] {
+  --bg: var(--ink);
+}
+[data-stock="midnight"] {
+  --bg: var(--midnight);
+}
+[data-stock="royal"] {
+  --bg: var(--royal-deep);
+}
+[data-stock="room"] {
+  --bg: var(--room);
+}
+
+:root,
+[data-stock="paper"],
+[data-stock="bone"],
+[data-stock="champagne"] {
+  --fg: var(--t-ink);
+  --fg-soft: var(--t-soft);
+  --accent: var(--t-royal);
+  --label: var(--t-goldink);
+  --rule: rgb(21 21 26 / 0.16);
+  --focus: var(--t-ink);
+  --reserve: var(--red);
+  --reserve-hover: var(--red-hover);
+  --reserve-edge: transparent;
+}
+
+[data-stock="ink"],
+[data-stock="midnight"],
+[data-stock="royal"],
+[data-stock="room"] {
+  --fg: var(--t-cream);
+  --fg-soft: var(--t-mist);
+  --accent: var(--t-goldleaf);
+  --label: var(--t-goldleaf);
+  --rule: rgb(255 255 255 / 0.16);
+  --focus: var(--t-goldleaf);
+  --reserve: var(--red-ondark);
+  --reserve-hover: var(--red);
+  --reserve-edge: var(--t-cream);
+}
+
+/* Declared per stock, not only on :root, because a var() inside a custom
+   property resolves where it is declared. */
+:root,
+[data-stock] {
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --ring: var(--focus);
+  --border: var(--rule);
+  --input: var(--rule);
+  --card: var(--bg);
+  --card-foreground: var(--fg);
+  --popover: var(--bg);
+  --popover-foreground: var(--fg);
+  --primary: var(--fg);
+  --primary-foreground: var(--bg);
+  --secondary: var(--rule);
+  --secondary-foreground: var(--fg);
+  --muted: var(--rule);
+  --muted-foreground: var(--fg-soft);
+  --accent-foreground: var(--bg);
+  --destructive: var(--fg);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-synthesis: none;
+    scroll-padding-bottom: 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [data-stock] {
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  [id] {
+    scroll-margin-top: 16px;
+  }
+
+  em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  strong {
+    font-family: var(--font-ui);
+    font-weight: 600;
+  }
+
+  ::selection {
+    background-color: #294894;
+    color: #ffffff;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-bottom: 0;
+    }
+
+    [id] {
+      scroll-margin-top: 80px;
+    }
+  }
+
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  .frame {
+    max-width: 1480px;
+    margin-inline: auto;
+    padding-inline: var(--gx);
+  }
+
+  .grid-12 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
+  }
+
+  @media (min-width: 1024px) {
+    .grid-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
+  .t-h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, min(6.2vw, 10.5vh), 6.25rem);
+    font-size: clamp(2.5rem, min(6.2vw, 10.5svh), 6.25rem);
+    line-height: 1.03;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .t-h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.25rem, 1.2rem + 4.4vw, 5.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  .t-word {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(4.75rem, min(23vw, 46vh), 20rem);
+    font-size: clamp(4.75rem, min(23vw, 46svh), 20rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .t-h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.6875rem, 0.85rem + 3.7vw, 4.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .t-outcome {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4.4vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.012em;
+  }
+
+  .t-standfirst {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+
+  .t-manifesto {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.25rem, 1.1rem + 4.9vw, 5.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+  }
+
+  .t-lead {
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: clamp(1.4375rem, 1.3rem + 0.6vw, 1.75rem);
+    line-height: 1.4;
+  }
+
+  .t-body {
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 1.2rem + 0.2vw, 1.375rem);
+    line-height: 1.55;
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  .t-eyebrow {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    color: var(--label);
+  }
+
+  .t-cta {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .t-note {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .eyebrow-dash {
+    flex: none;
+    align-self: flex-start;
+    width: 28px;
+    height: 1px;
+    margin-top: 0.7em;
+    background-color: currentColor;
+    transform-origin: left;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 50;
+    padding: 12px 16px;
+    background-color: var(--paper);
+    color: var(--t-ink);
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 1rem;
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    display: block;
+    flex: none;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .brand-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.03);
+  }
+
+  .brand-name {
+    display: block;
+    font-family: var(--font-text);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .masthead {
+    position: relative;
+    z-index: 40;
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  .masthead-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 56px;
+  }
+
+  .masthead-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    text-underline-offset: 4px;
+  }
+
+  .masthead-link:hover {
+    text-decoration: underline;
+  }
+
+  .masthead-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-right: -12px;
+    list-style: none;
+  }
+
+  .masthead-menu-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .masthead-menu-panel {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    padding-bottom: 24px;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-menu-link {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 1024px) {
+    .masthead {
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-bar {
+      height: 64px;
+    }
+  }
+
+  .ledger-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 24px;
+    padding-block: 14px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ledger-label {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--fg-soft);
+  }
+
+  .ledger-value {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .footer {
+    border-top: 1.5px solid var(--gold-shape);
+    padding-block: 24px calc(24px + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 1024px) {
+    .footer {
+      padding-block: 32px;
+    }
+  }
+
+  .dock {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+    background-color: var(--bg);
+    border-top: 1px solid var(--rule);
+    transform: translateY(100%);
+    transition: transform 180ms var(--ease-exit);
+  }
+
+  .dock[data-shown="true"] {
+    transform: none;
+    transition: transform 240ms var(--ease-settle);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dock,
+    .dock[data-shown="true"] {
+      transition: none;
+    }
+  }
+
+  .progress-hairline {
+    display: none;
+  }
+}
+
+/* Unlayered on purpose: shadcn's outline-none and ring utilities must not win. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @keyframes reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .progress-hairline {
+    display: block;
+    position: absolute;
+    inset-inline: 0;
+    height: 1px;
+    background-color: var(--gold-line);
+    transform-origin: left;
+    pointer-events: none;
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  .masthead .progress-hairline {
+    display: none;
+    bottom: -1px;
+  }
+
+  .dock .progress-hairline {
+    top: -1px;
+  }
+
+  @media (min-width: 1024px) {
+    .masthead .progress-hairline {
+      display: block;
+    }
+  }
+}
+
+/* Hero first impression. Outside this query everything is simply visible. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hero-wipe-in {
+    from {
+      clip-path: inset(0 0 0 100%);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes hero-dash-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .hero-fade {
+    animation: hero-fade-in 700ms var(--ease-settle) both;
+  }
+
+  /* Byline and format lines take this timing. The H1 em line takes the next. */
+  .hero-fade-late {
+    animation: hero-fade-in 600ms var(--ease-settle) 500ms both;
+  }
+
+  h1 .hero-fade-late,
+  em.hero-fade-late {
+    animation: hero-fade-in 900ms var(--ease-settle) 180ms both;
+  }
+
+  .hero-wipe {
+    animation: hero-wipe-in 1100ms var(--ease-settle) both;
+  }
+
+  .hero-block {
+    animation: hero-fade-in 500ms var(--ease-settle) 700ms both;
+  }
+
+  .hero-dash .eyebrow-dash {
+    animation: hero-dash-grow 480ms var(--ease-draw) both;
+  }
+}
