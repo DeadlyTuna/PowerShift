@@ -26,6 +26,12 @@ const FADE_MS = 400;
 const GUARD_FRAMES = 30;
 const GUARD_SLOW_MS = 22;
 const GUARD_STOP_MS = 28;
+// A browser capping rAF at 30 fps (iOS Low Power Mode, say) delivers steady gaps near this,
+// which says nothing about the GPU, and steady 30 fps looks fine anyway.
+const GUARD_CAPPED_MS = 1000 / 30;
+const GUARD_CAPPED_MAX_MS = 45;
+// Under WCAG 2.2.2, motion nobody started must stop within 5 seconds.
+const DRIFT_MS = 4500;
 
 function smoothstep(edge0: number, edge1: number, value: number) {
   const t = Math.min(Math.max((value - edge0) / (edge1 - edge0), 0), 1);
@@ -127,7 +133,10 @@ export function mountHorizon({ slot, tier, onReady, onStop }: HorizonOptions): (
   let lastRender = 0;
   let renderedLastTick = false;
 
+  let lastMoving = 0;
+
   let guardSum = 0;
+  let guardMax = 0;
   let guardCount = 0;
   let guardStage = 0;
 
@@ -168,14 +177,18 @@ export function mountHorizon({ slot, tier, onReady, onStop }: HorizonOptions): (
 
   function sampleGuard(frameMs: number) {
     guardSum += frameMs;
+    guardMax = Math.max(guardMax, frameMs);
     guardCount += 1;
     if (guardCount < GUARD_FRAMES) return;
 
     const average = guardSum / guardCount;
+    const capped = Math.abs(average - GUARD_CAPPED_MS) < 3 && guardMax < GUARD_CAPPED_MAX_MS;
     guardSum = 0;
+    guardMax = 0;
     guardCount = 0;
     guardStage += 1;
 
+    if (capped) return;
     if (guardStage === 1 && average > GUARD_SLOW_MS) {
       dpr = 1;
       applySize();
@@ -206,6 +219,10 @@ export function mountHorizon({ slot, tier, onReady, onStop }: HorizonOptions): (
 
     uniforms.uRise.value = rise;
     uniforms.uSweep.value = sweep;
+
+    // Once scrolling has stopped the rays drift briefly, then settle and stop drawing.
+    if (moving) lastMoving = now;
+    if (now - lastMoving > DRIFT_MS) return;
     uniforms.uTime.value += dt;
 
     if (now - lastRender < (moving ? movingInterval : idleInterval)) return;
@@ -221,6 +238,7 @@ export function mountHorizon({ slot, tier, onReady, onStop }: HorizonOptions): (
     running = shouldRun;
     if (running) {
       lastTick = performance.now();
+      lastMoving = lastTick;
       renderedLastTick = false;
       renderer.setAnimationLoop(tick);
     } else {

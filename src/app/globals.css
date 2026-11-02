@@ -280,12 +280,14 @@
   }
 
   @media (min-width: 1024px) {
+    /* Padding, not margin on [id], so keyboard focus also clears the sticky masthead. */
     html {
+      scroll-padding-top: 80px;
       scroll-padding-bottom: 0;
     }
 
     [id] {
-      scroll-margin-top: 80px;
+      scroll-margin-top: 0;
     }
   }
 
@@ -657,6 +659,143 @@
 }
 
 /* Hero first impression. Outside this query everything is simply visible. */
+.masthead {
+  box-shadow: 0 1px 18px rgb(14 15 18 / 0.06);
+}
+
+.quote-card {
+  display: block;
+  padding: 28px 32px;
+  border-radius: 10px;
+  color: #15151a;
+  background: linear-gradient(135deg, #ffffff 0%, #eef1f8 62%, #ffffff 100%);
+  box-shadow: 0 18px 60px rgb(14 15 18 / 0.22);
+}
+
+.quote-card-mark {
+  display: block;
+  height: 0.62em;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--gold-shape);
+}
+
+.quote-card p {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.6875rem, 2.1vw, 2rem);
+  line-height: 1.22;
+}
+
+.event-pill-wrap {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .event-pill-wrap {
+    display: block;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 40;
+    transition: opacity 240ms ease-out, translate 240ms ease-out;
+  }
+
+  .event-pill-wrap[data-shown="false"] {
+    opacity: 0;
+    translate: 0 12px;
+    pointer-events: none;
+  }
+}
+
+.event-pill {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 26px 11px 11px;
+  border: 4px solid #b82f2b;
+  border-radius: 999px;
+  color: #111111;
+  font-family: var(--font-ui);
+  background: #d4af37;
+  box-shadow: 0 16px 38px rgb(0 0 0 / 0.26), 0 0 30px rgb(212 175 55 / 0.28);
+  transition: translate 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.event-pill:hover {
+  translate: 0 -2px;
+  box-shadow: 0 20px 44px rgb(0 0 0 / 0.32), 0 0 34px rgb(212 175 55 / 0.4);
+}
+
+.event-pill-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgb(17 17 17 / 0.2);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.18);
+}
+
+.event-pill-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.event-pill-date {
+  display: block;
+  margin-top: 3px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.event-pill-values {
+  display: flex;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+.event-pill-unit {
+  position: relative;
+  min-width: 52px;
+  text-align: center;
+}
+
+.event-pill-unit + .event-pill-unit::before {
+  content: ":";
+  position: absolute;
+  top: 0;
+  left: -13px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.event-pill-unit strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.event-pill-unit > span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @keyframes hero-fade-in {
     from {

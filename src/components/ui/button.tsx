@@ -19,9 +19,9 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
         reserve:
-          "rounded-[2px] border-[color:var(--reserve-edge)] bg-[var(--reserve)] font-ui text-base leading-[1.2] font-semibold text-white transition-colors duration-200 ease-out hover:bg-[var(--reserve-hover)] focus-visible:border-[color:var(--reserve-edge)] active:not-aria-[haspopup]:translate-y-0",
+          "rounded-[10px] border-[color:var(--reserve-edge)] bg-[var(--reserve)] font-ui text-base leading-[1.2] font-semibold text-white shadow-[0_8px_22px_rgb(140_31_24/.28)] transition-[background-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-0.5 hover:bg-[var(--reserve-hover)] hover:shadow-[0_13px_30px_rgb(140_31_24/.38)] focus-visible:border-[color:var(--reserve-edge)] active:not-aria-[haspopup]:translate-y-0 motion-reduce:hover:translate-y-0 [&_svg]:transition-transform [&_svg]:duration-200 hover:[&_svg]:translate-x-1",
         "reserve-quiet":
-          "rounded-[2px] border-current bg-transparent font-ui text-base leading-[1.2] font-semibold text-[var(--fg)] transition-colors duration-200 ease-out focus-visible:border-current active:not-aria-[haspopup]:translate-y-0",
+          "rounded-[10px] border-current bg-transparent font-ui text-base leading-[1.2] font-semibold text-[var(--fg)] transition-colors duration-200 ease-out focus-visible:border-current active:not-aria-[haspopup]:translate-y-0",
       },
       size: {
         default:

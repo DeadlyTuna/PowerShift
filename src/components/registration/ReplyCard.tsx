@@ -14,11 +14,11 @@ export function ReplyCard() {
       stock="paper"
       id="reserve"
       data-inline-cta=""
-      className="relative px-6 py-8 lg:p-11"
+      className="relative rounded-[14px] px-6 py-8 shadow-[12px_12px_0_rgb(212_175_55/.14)] lg:p-11 lg:shadow-[18px_18px_0_rgb(212_175_55/.14)]"
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-2 border border-t-goldink lg:inset-2.5"
+        className="pointer-events-none absolute inset-2 rounded-[8px] border border-t-goldink/50 lg:inset-2.5"
       />
       <RegistrationForm
         intro={

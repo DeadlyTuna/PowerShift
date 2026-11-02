@@ -125,10 +125,14 @@ export function RegistrationForm({ intro, note }: RegistrationFormProps) {
 
               {/* Only bots fill this in. */}
               <div aria-hidden="true" className="absolute -left-[9999px] size-px overflow-hidden">
-                <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+                <input type="text" name="ps_extra" tabIndex={-1} autoComplete="off" />
               </div>
 
-              {failure?.message ? (
+              <p role="status" className="sr-only">
+                {pending ? registration.pending : ""}
+              </p>
+
+              {failure?.message && !pending ? (
                 <div role="alert" className="t-note mt-6 flex gap-2 text-fg">
                   <CircleAlert aria-hidden="true" className="mt-px size-4 shrink-0" />
                   <p>{failure.message}</p>

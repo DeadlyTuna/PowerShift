@@ -1,4 +1,3 @@
-import { cn } from "cn";
 import type { ReactNode } from "react";
 
 type LedgerProps = {
@@ -9,13 +8,25 @@ type LedgerProps = {
 };
 
 export function Ledger({ rows, order = "label-first", className }: LedgerProps) {
+  // The credentials read as one phrase ("Leadership & Agile coaching"), so the DOM keeps that order.
+  if (order === "value-first") {
+    return (
+      <div className={className}>
+        {rows.map((row) => (
+          <p key={row.label} className="ledger-row">
+            <span className="ledger-value">{row.value}</span>{" "}
+            <span className="ledger-label">{row.label}</span>
+          </p>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <dl className={className}>
       {rows.map((row) => (
         <div key={row.label} className="ledger-row">
-          <dt className={cn("ledger-label", order === "value-first" && "order-last")}>
-            {row.label}
-          </dt>
+          <dt className="ledger-label">{row.label}</dt>
           <dd className="ledger-value">{row.value}</dd>
         </div>
       ))}

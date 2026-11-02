@@ -38,7 +38,8 @@ export async function register(
   };
 
   // Hidden field that only bots fill in. They get a normal-looking success and nothing is forwarded.
-  if (String(formData.get("company") ?? "") !== "") {
+  // Its name must not look like an address field, or browser autofill would fill it for real visitors.
+  if (String(formData.get("ps_extra") ?? "") !== "") {
     return { status: "success", email: values.email.trim() };
   }
 

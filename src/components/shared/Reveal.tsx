@@ -69,20 +69,28 @@ export function Reveal({
     const rise = mode === "rise";
     controls.set(rise ? { opacity: 0, y } : { opacity: 0 });
 
+    const play = () => {
+      observer.disconnect();
+      element.removeEventListener("focusin", play);
+      controls.start(rise ? { opacity: 1, y: 0 } : { opacity: 1 }, {
+        duration: duration / 1000,
+        delay: delay / 1000,
+        ease: EASE_SETTLE,
+      });
+    };
     const observer = new IntersectionObserver(
       (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        observer.disconnect();
-        controls.start(rise ? { opacity: 1, y: 0 } : { opacity: 1 }, {
-          duration: duration / 1000,
-          delay: delay / 1000,
-          ease: EASE_SETTLE,
-        });
+        if (entries.some((entry) => entry.isIntersecting)) play();
       },
       { rootMargin: "0px 0px -12% 0px" },
     );
     observer.observe(element);
-    return () => observer.disconnect();
+    // Keyboard focus can land inside before it crosses the line, and must not be invisible.
+    element.addEventListener("focusin", play);
+    return () => {
+      observer.disconnect();
+      element.removeEventListener("focusin", play);
+    };
   }, [controls, reduced, mode, y, duration, delay]);
 
   return <Tag ref={ref} initial={false} animate={controls} {...props} />;

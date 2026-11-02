@@ -11,6 +11,7 @@ import { Outcomes } from "@/components/sections/Outcomes";
 import { Pillars } from "@/components/sections/Pillars";
 import { Possibility } from "@/components/sections/Possibility";
 import { Recognition } from "@/components/sections/Recognition";
+import { FloatingCountdown } from "@/components/sections/FloatingCountdown";
 import { StickyReserve } from "@/components/sections/StickyReserve";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
+      <FloatingCountdown />
       <StickyReserve />
     </>
   );

@@ -123,13 +123,11 @@ export function Hero() {
             <HeroPicture />
           </figure>
 
-          <blockquote className="hero-block mt-8 border-y py-5 max-lg:pl-[0.6em] lg:relative lg:z-[1] lg:col-[5/span_8] lg:row-start-3 lg:mt-0 lg:flex lg:aspect-square lg:w-[clamp(240px,22vw,340px)] lg:flex-col lg:justify-center lg:self-end lg:justify-self-start lg:border-y-0 lg:bg-bg lg:p-8">
-            <p className="relative font-display text-[clamp(1.75rem,2.5vw,2.25rem)] leading-[1.15] italic">
-              <span aria-hidden="true" className="absolute right-full pr-[0.08em] text-t-goldink">
-                “
-              </span>
-              {hero.quote}
-            </p>
+          <blockquote className="quote-card hero-block mt-8 lg:relative lg:z-[1] lg:col-[5/span_8] lg:row-start-3 lg:mt-0 lg:mb-10 lg:ml-8 lg:w-[clamp(280px,25vw,380px)] lg:self-end lg:justify-self-start">
+            <span aria-hidden="true" className="quote-card-mark">
+              “
+            </span>
+            <p>{hero.quote}</p>
           </blockquote>
         </Grid>
       </Frame>

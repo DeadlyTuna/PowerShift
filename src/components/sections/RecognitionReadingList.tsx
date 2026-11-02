@@ -72,7 +72,7 @@ function ReadingRow({ title, copy }: { title: string; copy: string }) {
       <Grid className="gap-y-2 py-[clamp(20px,2.4vw,36px)] lg:items-baseline">
         <h3
           ref={titleRef}
-          className="t-h3 transition-colors duration-400 ease-out data-armed:text-t-unlit lg:col-[1/span_8]"
+          className="t-h3 transition-[color,translate] duration-400 ease-out data-armed:text-t-unlit lg:col-[1/span_8] lg:hover:translate-x-3 motion-reduce:lg:hover:translate-x-0"
         >
           {title}
         </h3>

@@ -11,7 +11,8 @@ export const brand = {
 /**
  * The live session's start time, as an ISO 8601 string with an offset, for
  * example "2026-12-05T19:00:00+05:30". While this is null the page says
- * "Date announced soon" and the countdown shows no numbers.
+ * "Date announced soon" and the floating pill runs a repeating 24-hour timer.
+ * Setting a date replaces that timer with a real countdown.
  */
 export const MASTERCLASS_STARTS_AT: string | null = null;
 
@@ -318,5 +319,5 @@ export const finalCta = {
 export const countdown = {
   label: "GOING LIVE SOON!",
   dateUnset: "Date announced soon",
-  units: { days: "Days", hours: "Hours", minutes: "Minutes" },
+  units: { days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds" },
 } as const;

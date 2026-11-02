@@ -8,17 +8,23 @@ import { useInlineCtaVisible } from "@/hooks/use-inline-cta";
 import { hero } from "@/lib/content";
 
 function subscribeToReserved(onChange: () => void) {
-  window.addEventListener("ps:reserved", onChange);
-  document.addEventListener("ps:reserved", onChange);
+  const onReserved = () => {
+    reservedThisVisit = true;
+    onChange();
+  };
+  window.addEventListener("ps:reserved", onReserved);
   window.addEventListener("storage", onChange);
   return () => {
-    window.removeEventListener("ps:reserved", onChange);
-    document.removeEventListener("ps:reserved", onChange);
+    window.removeEventListener("ps:reserved", onReserved);
     window.removeEventListener("storage", onChange);
   };
 }
 
+// Where storage is blocked, the event alone still has to hide the dock for this visit.
+let reservedThisVisit = false;
+
 function readReserved() {
+  if (reservedThisVisit) return true;
   try {
     return window.localStorage.getItem("ps-reserved") !== null;
   } catch {

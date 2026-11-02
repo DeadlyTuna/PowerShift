@@ -2,7 +2,6 @@
 
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, type MouseEvent } from "react";
-import { EventStatus } from "@/components/countdown/EventStatus";
 import { Brand } from "@/components/shared/Brand";
 import { Frame } from "@/components/shared/Frame";
 import { ReserveLink } from "@/components/shared/ReserveLink";
@@ -35,9 +34,7 @@ export function Masthead() {
       <Frame className="masthead-bar">
         <Brand variant="masthead" />
 
-        <div className="mx-auto hidden xl:block">
-          <EventStatus variant="masthead" />
-        </div>
+        <div className="mx-auto" />
 
         <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (

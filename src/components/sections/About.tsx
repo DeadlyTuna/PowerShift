@@ -27,17 +27,15 @@ export function About() {
             </Reveal>
           </header>
 
-          <figure className="relative -mx-[var(--gx)] lg:sticky lg:top-16 lg:col-[1/span_6] lg:row-[1/span_2] lg:mr-0 lg:-ml-[var(--edge)] lg:h-[calc(100vh-64px)] lg:h-[calc(100svh-64px)] lg:self-start">
+          <figure className="relative -mx-[var(--gx)] lg:sticky lg:top-16 lg:col-[1/span_6] lg:row-[1/span_2] lg:mr-0 lg:-ml-[var(--edge)] lg:h-[calc(100vh-64px)] lg:self-start lg:supports-[height:1svh]:h-[calc(100svh-64px)]">
             <div className="relative aspect-[4/5] overflow-hidden lg:aspect-auto lg:h-full">
               <AboutPhoto />
             </div>
-            <blockquote className="mx-[var(--gx)] mt-8 border-y border-rule py-6 lg:absolute lg:right-0 lg:bottom-0 lg:m-0 lg:w-[clamp(300px,26vw,420px)] lg:border-0 lg:bg-bg lg:p-8">
-              <p className="relative font-display text-[30px] leading-[1.2] italic">
-                <span aria-hidden="true" className="absolute right-full text-t-goldink">
-                  “
-                </span>
-                {about.quote}
-              </p>
+            <blockquote className="quote-card mx-[var(--gx)] mt-8 lg:absolute lg:right-8 lg:bottom-8 lg:m-0 lg:w-[clamp(300px,26vw,400px)]">
+              <span aria-hidden="true" className="quote-card-mark">
+                “
+              </span>
+              <p>{about.quote}</p>
               <footer className="t-eyebrow mt-4">{about.quoteAuthor}</footer>
             </blockquote>
           </figure>
