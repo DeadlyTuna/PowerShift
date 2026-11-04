@@ -25,7 +25,7 @@ export const navLinks = [
 export const navCta = "Reserve my seat!";
 
 export const hero = {
-  eyebrow: "Free live masterclass for women with 12 years or more of experience",
+  eyebrow: "Free live masterclass for working professionals with 12 years or more of experience",
   title: "You’ve worked hard for years.",
   titleAccent: "So why does your career still feel stuck?",
   lead: "Discover three powerful shifts to break free from overthinking, self-doubt and career stagnation—without sacrificing your peace, relationships or joy. The longer you wait for perfect clarity, the more opportunities can pass unnoticed.",
@@ -137,7 +137,7 @@ export const pillars = {
       label: "Pillar 3",
       title: "Progress",
       subtitle: "Stop waiting to feel ready. Start making things happen.",
-      copy: "Discover how perfectionism, procrastination and overthinking keep even capable women stuck—and how to move beyond these patterns to take bold, massive action toward the goals that matter to you.",
+      copy: "Discover how perfectionism, procrastination and overthinking keep even capable professionals stuck—and how to move beyond these patterns to take bold, massive action toward the goals that matter to you.",
       takeaway: "Progress turns your dreams into reality.",
     },
   ],
@@ -193,7 +193,7 @@ export const about = {
   feedbackQuote: "“You’ve achieved your goals. But your team feels left behind.”",
   storyAfter: [
     "That moment began a journey into Agile Coaching, mindset, communication and relationships. I learned that I could grow professionally without losing myself along the way.",
-    "Today, I help ambitious working women reconnect with their confidence, move towards meaningful growth and create more space for the people and things that matter most.",
+    "Today, I help ambitious working professionals—both men and women—reconnect with their confidence, move towards meaningful growth and create more space for the people and things that matter most.",
   ],
   credentials: [
     { value: "20 years", label: "Corporate experience" },
@@ -207,7 +207,7 @@ export const fit = {
     eyebrow: "This is for you if...",
     title: "You are ready to explore a different way forward.",
     paragraphs: [
-      "You’re an ambitious working woman with 12+ years of experience who feels stuck, stagnant or unsure about your next move.",
+      "You’re an ambitious working professional with 12+ years of experience who feels stuck, stagnant or unsure about your next move.",
       "You may be navigating overthinking, self-doubt or difficult decisions. You want to speak up, create greater visibility and grow without losing your peace or relationships along the way.",
     ],
   },
@@ -216,7 +216,7 @@ export const fit = {
     title: "You are looking for a shortcut.",
     paragraphs: [
       "This is not a promise of guaranteed promotions or job placements. It is not technical skills training.",
-      "It is for women willing to reflect honestly on their patterns, choices and possibilities.",
+      "It is for anyone willing to reflect honestly on their patterns, choices and possibilities.",
     ],
     closing:
       "You don’t need to have everything figured out. You just need to be willing to begin.",
@@ -272,9 +272,9 @@ export const faq = {
         "This masterclass focuses on the Purpose, Power and Progress shifts that influence how you use the knowledge and skills you already have.",
     },
     {
-      question: "Is this only for women already in leadership?",
+      question: "Do I need to be in a leadership role already?",
       answer:
-        "No. It’s for ambitious, experienced working women who want to grow—whether they already lead teams or aspire to bigger roles.",
+        "No. It’s for ambitious, experienced professionals who want to grow—whether they already lead teams or aspire to bigger roles.",
     },
     {
       question: "Is 12 years of work experience a must?",
@@ -304,6 +304,11 @@ export const faq = {
     {
       question: "Is the masterclass really free?",
       answer: "Yes. The live masterclass is completely free to attend.",
+    },
+    {
+      question: "Is this only for women?",
+      answer:
+        "No. The Power Shift is now open to all working professionals—both men and women. Self-doubt, overthinking and career stagnation don’t discriminate by gender.",
     },
   ],
 } as const;

@@ -11,7 +11,7 @@ import {
 import { faq } from "@/lib/content";
 
 // By source index, so the wording stays untouched in content.ts.
-const ORDER = [8, 6, 1, 7, 2, 3, 5, 4, 0];
+const ORDER = [8, 6, 1, 7, 9, 2, 3, 5, 4, 0];
 const OPEN_BY_DEFAULT = ORDER.slice(0, 2).map(String);
 
 // forceMount keeps every answer in the HTML, so closed ones are hidden here instead of by Radix.
